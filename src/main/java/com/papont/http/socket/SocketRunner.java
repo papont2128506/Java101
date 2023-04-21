@@ -13,13 +13,13 @@ public class SocketRunner {
         // http  - 80
         // https - 443
         // tcp
-        InetAddress inetAddress = Inet4Address.getByName("google.com");
-        try (var socket = new Socket(inetAddress, 80);
+        InetAddress inetAddress = Inet4Address.getByName("localhost");
+        try (var socket = new Socket(inetAddress, 7778);
              var outputStream = new DataOutputStream(socket.getOutputStream());
              var inputStream = new DataInputStream(socket.getInputStream())) {
             outputStream.writeUTF("Hello");
-            var response = inputStream.readAllBytes();
-            System.out.println(response.length);
+            //var response = inputStream.readAllBytes();
+            System.out.println("Response from server: " + inputStream.readUTF());
         };
     }
 }
